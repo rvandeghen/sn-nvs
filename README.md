@@ -85,12 +85,11 @@ For the challenge submission, we use Codabench as the submission platform. You c
 
 For the challenge submission, participants should use the provided `render_challenge.py` script (equivalent to `render.py` from 3DGS). To use it, you need to specify the model path you used during training, but you need to specify the challenge scene path. An example can be found below, using the 3DGS method:
 ```bash
-cd submodules/gaussian-splatting
 conda activate gaussian_splatting
-python render_challenge.py -s <path_to_challenge_scene> -m <path_to_trained_model> -i images_2 -r 1
+python render_challenge.py 3dgs -s <path_to_challenge_scene> -m <path_to_trained_model> -i images_2 -r 1
 ```
 
-Depending on the method you use, you may need to change the `render` function.
+Depending on the method you use, you may need to change the `render` function. You can also directly copy and modify the `render_challenge.py` script to your own repository to fit your method.
 
 The participants need to submit their results in a zip file with the following structure:
 ```text
