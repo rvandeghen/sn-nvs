@@ -43,11 +43,11 @@ After you have downloaded the dataset and installed the chosen method, you can t
 
 ### Installing the repository
 
-Here are the basic steps to install the 3DGS repository (same for TS):
+Here are the basic steps to install the 3DGS repository (same for TS) from this repository, as submodules:
 
 ```bash
-cd <path_to_clone_repo>
-git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
+git clone https://github.com/SoccerNet/sn-nvs --recursive
+cd submodules/gaussian-splatting
 
 conda env create --file environment.yml
 conda activate gaussian_splatting
@@ -56,6 +56,8 @@ conda activate gaussian_splatting
 ### Training
 
 ```bash
+cd submodules/gaussian-splatting
+conda activate gaussian_splatting
 python train.py -s <path_to_scene> -i images_2 -r 1 -m <path_to_save_model> --eval --extra_flags
 ```
 
@@ -64,12 +66,16 @@ with `--extra_flags` being related to the specific method.
 ### Rendering
 
 ```bash
+cd submodules/gaussian-splatting
+conda activate gaussian_splatting
 python render.py -s <path_to_scene> -m <path_to_trained_model> --eval --skip_train
 ```
 
 ### Validation set metrics
 
 ```bash
+cd submodules/gaussian-splatting
+conda activate gaussian_splatting
 python metrics.py -m <path_to_trained_model>
 ```
 
@@ -77,9 +83,11 @@ python metrics.py -m <path_to_trained_model>
 
 For the challenge submission, we use Codabench as the submission platform. You can find the challenge page here: [https://www.codabench.org/competitions/11339/](https://www.codabench.org/competitions/11339/).  
 
-For the challenge submission, participants should use the provided `render_challenge.py` script (equivalent to `render.py` from 3DGS). To use it, you need to specify the model path you used during training, but you need to specify the challenge scene path. An example can be found below:
+For the challenge submission, participants should use the provided `render_challenge.py` script (equivalent to `render.py` from 3DGS). To use it, you need to specify the model path you used during training, but you need to specify the challenge scene path. An example can be found below, using the 3DGS method:
 ```bash
-python render_challenge.py -s <path_to_challenge_scene> -m <path_to_trained_model> -i images_2 -r 1 --method <ts/3dgs>
+cd submodules/gaussian-splatting
+conda activate gaussian_splatting
+python render_challenge.py -s <path_to_challenge_scene> -m <path_to_trained_model> -i images_2 -r 1
 ```
 
 Depending on the method you use, you may need to change the `render` function.
